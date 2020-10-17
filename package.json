@@ -10,18 +10,31 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "axios": "^0.20.0",
+    "cross-env": "^7.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "rimraf": "^3.0.2",
     "typescript": "~3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run clean && npm run build-ts && npm run build-css",
     "test": "react-scripts test",
+    "test:nowatch": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "lint": "eslint --ext js,ts,tsx src --max-warnings 10",
+    "clean": "rimraf ./build",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/styles/index.scss ./build/index.scss"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test:nowatch && npm run lint"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,6 +60,7 @@
     "@storybook/preset-create-react-app": "^3.1.4",
     "@storybook/react": "^6.0.26",
     "babel-loader": "^8.1.0",
+    "node-sass": "^4.14.1",
     "react-is": "^16.13.1"
   }
 }
