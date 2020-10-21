@@ -8,7 +8,10 @@ import Plugin from './assets/plugin.svg';
 import Repo from './assets/repo.svg';
 import StackAlt from './assets/stackalt.svg';
 
-<Meta title="Example/Introduction" />
+import Bar from '../Components/Bar'
+import Pie from '../Components/Pie'
+
+<Meta title="Welcome/介绍" />
 
 <style>{`
   .subheading {
@@ -114,81 +117,78 @@ import StackAlt from './assets/stackalt.svg';
   
 `}</style>
 
-# Welcome to Storybook
+# 欢迎使用nubula-charts
 
-Storybook helps you build UI components in isolation from your app's business logic, data, and context.
-That makes it easy to develop hard-to-reach states. Save these UI states as **stories** to revisit during development, testing, or QA.
+**nubula-charts**能帮助你快速完成项目中的图表需求，对常用的图表进行了二次封装，简化了echarts option配置流程。
 
-Browse example stories now by navigating to them in the sidebar.
+<!-- Browse example stories now by navigating to them in the sidebar.
 View their code in the `src/storybook-examples` directory to learn how they work.
-We recommend building UIs with a [**component-driven**](https://componentdriven.org) process starting with atomic components and ending with pages.
+We recommend building UIs with a [**component-driven**](https://componentdriven.org) process starting with atomic components and ending with pages. -->
 
-<div class="subheading">Configure</div>
+<div class="subheading">事例展示</div>
 
 <div class="link-list">
-  <a class="link-item" href="https://storybook.js.org/docs/react/api/presets" target="_blank">
+  {/* <a class="link-item" href="https://storybook.js.org/docs/react/api/presets" target="_blank">
     <img src={Plugin} alt="plugin" />
     <span>
       <strong>Presets for popular tools</strong>
       Easy setup for TypeScript, SCSS and more.
     </span>
-  </a>
-  <a class="link-item" href="https://storybook.js.org/docs/react/configure/webpack" target="_blank">
-    <img src={StackAlt} alt="Build" />
-    <span>
-      <strong>Build configuration</strong>
-      How to customize webpack and Babel
-    </span>
-  </a>
-  <a class="link-item" href="https://storybook.js.org/docs/react/configure/styling-and-css" target="_blank">
-    <img src={Colors} alt="colors" />
-    <span>
-      <strong>Styling</strong>
-      How to load and configure CSS libraries
-    </span>
-  </a>
-  <a class="link-item" href="https://storybook.js.org/docs/react/get-started/setup#configure-storybook-for-your-stack" target="_blank">
-    <img src={Flow} alt="flow" />
-    <span>
-      <strong>Data</strong>
-      Providers and mocking for data libraries
-    </span>
-  </a>
-</div>
-
-<div class="subheading">Learn</div>
-
-<div class="link-list">
-  <a class="link-item" href="https://storybook.js.org/docs" target="_blank">
-    <img src={Repo} alt="repo" />
-    <span>
-      <strong>Storybook documentation</strong>
-      Configure, customize, and extend
-    </span>
-  </a>
-  <a class="link-item" href="https://www.learnstorybook.com" target="_blank">
-    <img src={Direction} alt="direction" />
-    <span>
-      <strong>In-depth guides</strong>
-      Best practices from leading teams
-    </span>
-  </a>
-  <a class="link-item" href="https://github.com/storybookjs/storybook" target="_blank">
-    <img src={Code} alt="code" />
-    <span>
-      <strong>GitHub project</strong>
-      View the source and add issues
-    </span>
-  </a>
-  <a class="link-item" href="https://discord.gg/UUt2PJb" target="_blank">
-    <img src={Comments} alt="comments" />
-    <span>
-      <strong>Discord chat</strong>
-      Chat with maintainers and the community
-    </span>
-  </a>
+  </a> */}
+  <div class="link-item">
+    <Bar 
+      width={'100%'}
+      height={'300px'}
+      unit={'单位/次'}
+      toolTipUnit={'次'}
+      barWidth={15}
+      axisLineColor={'#8e9eab'}
+      axisFontColor={'#8e9eab'}
+      rotate={0}
+      chartData={[
+        {
+          name:'数据一',
+          colors: ['#02AAB0','#00CDAC'],
+          xData: ['一月','二月','三月'],
+          yData: [10,11,12]
+        },
+        {
+          name:'数据二',
+          colors: ['#8E2DE2','#4A00E0'],
+          xData: ['一月','二月','三月'],
+          yData: [20,6,32]
+        }
+      ]}
+    />
+  </div>
+  <div class="link-item">
+    <Pie 
+      width={'100%'}
+      height={'300px'}
+      toolTipUnit={'次'}
+      bckColor={'rgba(255,255,255,0.05)'}
+      chartData={[
+        {
+          name:'数据1',
+          color: '#02AAB0',
+          value: '200'
+        },
+        {
+          name:'数据2',
+          color: '#00CDAC',
+          value: '100'
+        },
+        {
+          name:'数据3',
+          color: '#FD866A',
+          value: '180'
+        },
+      ]}
+    />
+  </div>
+  
 </div>
 
 <div class="tip-wrapper">
-  <span class="tip">Tip</span>Edit the Markdown in <code>src/storybook-examples/welcome.mdx</code>
+  <span class="tip">Author</span>M_Joe<code>2020</code>
 </div>
