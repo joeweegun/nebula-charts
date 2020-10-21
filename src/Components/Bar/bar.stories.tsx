@@ -38,6 +38,7 @@ bar.args = {
   barWidth: '15',
   axisLineColor: '#8e9eab',
   axisFontColor: '#8e9eab',
+  rotate: 0,
   chartData: [
     {
       name:'数据一',
@@ -52,27 +53,4 @@ bar.args = {
       yData: [20,6,32]
     }
   ]
-  // btnType: "primary",
-  // size:"sm",
-  // children: 'primary'
 }
-// Primary.story = {
-//   parameters: {
-//     info: { 
-//       text: `
-//         ## 主按钮示意
-    
-//         ~~~js
-//         <Button>Primary Button</Button>
-//         ~~~
-//       `,
-//      },
-//   },
-// }
-
-// export const Default = Template.bind({});
-// Default.args = {
-//   btnType: 'default',
-//   size:'sm',
-//   children: 'default'
-// }

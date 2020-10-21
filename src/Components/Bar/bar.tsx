@@ -43,6 +43,26 @@ export interface BarInterface {
   */
  toolTipUnit?: string;
   /**
+  * X轴文字倾斜角度
+  */
+ rotate?:number | string;
+  /**
+  * 上边距
+  */
+ gridTop?:number | string;
+  /**
+  * 右边距
+  */
+ gridRight?:number | string;
+  /**
+  * 下边距
+  */
+ gridBottom?:number | string;
+  /**
+  * 下边距
+  */
+ gridLeft?:number | string;
+  /**
   * 图表宽度
   */
   width?: string;
@@ -78,6 +98,11 @@ export const Bar:FC<BarInterface> = (props) => {
     unit = '',
     toolTipUnit = '',
     barWidth = '30',
+    rotate = 0,
+    gridLeft,
+    gridRight,
+    gridBottom,
+    gridTop,
     chartData=[],
   } = props;
 
@@ -121,6 +146,13 @@ export const Bar:FC<BarInterface> = (props) => {
 
     const option = {
       backgroundColor,
+      grid: {
+        left: gridLeft,
+        right: gridRight,
+        bottom: gridBottom,
+        top:gridTop,
+        containLabel: true,
+      },
       legend: {
         data: [...Names],
         top: '5%',
@@ -193,6 +225,7 @@ export const Bar:FC<BarInterface> = (props) => {
             color: axisFontColor,
             fontSize: axisFontSize,
           },
+          rotate:rotate,
         }
       },
       yAxis: [{
@@ -231,7 +264,7 @@ export const Bar:FC<BarInterface> = (props) => {
     return option;
   }
 
-  return <ReactEcharts option={getOption()} style={{ width: `${width}`, height: `${height}` }}/>
+  return <ReactEcharts option={getOption()} style={{ width: `${width}`, height: `${height}` }} />
 
 }
 
@@ -246,6 +279,11 @@ Bar.defaultProps = {
   axisFontColor: '#8e9eab',
   axisFontSize: '12',
   yaxisFontSize: '12',
+  rotate: 0,
+  gridLeft: '10%',
+  gridRight: '10%',
+  gridBottom: 30,
+  gridTop:60,
   chartData: [
     {
       name:'数据一',
