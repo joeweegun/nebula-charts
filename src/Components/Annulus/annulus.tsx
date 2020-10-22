@@ -80,7 +80,7 @@ export const Annulus:FC<AnnulusProps> = (props) => {
           center: center,
           clockWise: false,
           hoverAnimation: false, //鼠标移入变大
-          radius: [`${35 + (index*10)}%`, `${40 + (index*10)}%`],
+          radius: [`${35 + (index*11)}%`, `${42 + (index*11)}%`],
           itemStyle: {
             borderRadius: 5,
             normal: {

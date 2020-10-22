@@ -26,6 +26,10 @@ export interface PieInterface {
   */
  isFill?: boolean;
  /**
+  * 是否显示标注线
+  */
+ showLabeLine?: boolean;
+ /**
   * 图例位置
   */
  legendPosition?: string;
@@ -66,6 +70,7 @@ export const Pie:FC<PieProps> = (props) => {
     legendPosition,
     chartData=[],
     center,
+    showLabeLine
   } = props;
 
   const getOption = ():echarts.EChartOption<echarts.EChartOption.Series> => {
@@ -127,7 +132,9 @@ export const Pie:FC<PieProps> = (props) => {
             normal: {
               color: (params:any) => {
                 return Colors[params.dataIndex]
-              }
+              },
+              borderColor: bckColor,
+              borderWidth: 2
             }
           },
           label: {
@@ -147,7 +154,7 @@ export const Pie:FC<PieProps> = (props) => {
               }
             },
             normal: {
-              show: true,
+              show: showLabeLine,
               formatter: ' {b|{b}}\n{per|{d}%}  ',
               borderWidth: 1,
               borderRadius: 2,
@@ -162,7 +169,7 @@ export const Pie:FC<PieProps> = (props) => {
               },
             },
             emphasis: {
-              show: true,
+              show: showLabeLine,
               textStyle: {
                 fontSize: '12',
                 fontWeight: 'bold',
@@ -227,6 +234,7 @@ Pie.defaultProps = {
   isFill: false,
   legendPosition: 'right',
   center: ['50%','50%'],
+  showLabeLine:true,
   chartData: [
     {
       name:'数据1',

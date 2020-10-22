@@ -22,6 +22,7 @@ pie.args = {
   toolTipUnit: '次',
   isFill: false,
   center:['50%','50%'],
+  showLabeLine: true,
   chartData: [
     {
       name:'数据1',

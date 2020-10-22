@@ -1,7 +1,7 @@
 
 [![Build Status](https://travis-ci.com/joeweegun/nebula-charts.svg?branch=main)](https://travis-ci.com/joeweegun/nebula-charts)
 [![Badge](https://img.shields.io/badge/link-996.icu-%23FF4D5B.svg?style=flat-square)](https://996.icu/#/zh_CN)
-##欢迎使用nubula-charts
+##  欢迎使用nubula-charts
 帮助你快速完成项目中的图表需求，对常用的图表进行了二次封装，简化了echarts option配置项。
 
 ## 技术栈

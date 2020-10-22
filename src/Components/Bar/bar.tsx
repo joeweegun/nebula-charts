@@ -38,6 +38,10 @@ export interface BarInterface {
   */
  unit?: string;
  /**
+  * 柱状图模式，默认为normal，竖向柱状图， hor为横向
+  */
+ mode?: string;
+ /**
   * Y轴单位
   */
  toolTipUnit?: string;
@@ -82,6 +86,7 @@ export const Bar:FC<BarProps> = (props) => {
     gridTop,
     showLegend,
     chartData=[],
+    mode,
   } = props;
 
   const getOption = ():echarts.EChartOption<echarts.EChartOption.Series> => {
@@ -112,7 +117,7 @@ export const Bar:FC<BarProps> = (props) => {
             fontSize: 12,
             fontWeight: 'bold',
             color: axisFontColor,
-            position: 'top',
+            position: mode === 'normal' ? 'top' : 'right',
           }
         },
         data: yData
@@ -121,6 +126,114 @@ export const Bar:FC<BarProps> = (props) => {
     const xData = chartData?.length>0 && chartData[0]?.xData;
     const Colors = chartData?.map((item:BarDataInterface) => item?.colors);
     const Names = chartData?.map((item:BarDataInterface) => item?.name);
+
+    const axisProps = mode === 'normal' ? {
+      xAxis: {
+        data: xData,
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          lineStyle: {
+            type: 'solid',
+            color: axisLineColor,
+            width: '1',
+          }
+        },
+        axisLabel: {
+          textStyle: {
+            color: axisFontColor,
+            fontSize: axisFontSize,
+          },
+          rotate:rotate,
+        }
+      },
+      yAxis: [{
+        name: `${unit}`,
+        nameTextStyle: {
+          color: axisFontColor,
+          fontSize: yaxisFontSize
+        },
+        axisLine: {
+          lineStyle: {
+            type: 'solid',
+            color: axisLineColor,
+            width: '1',
+          },
+        },
+        axisLabel: {
+          textStyle: {
+            color: axisFontColor,
+            fontSize: yaxisFontSize,
+          },
+        },
+        splitLine: {
+          show:false,
+          lineStyle: {
+            color: '#2d3d53'
+          }
+        },
+        // interval:500,
+  
+      }],
+    } : {
+      xAxis: {
+        type: 'value',
+        // boundaryGap: [0, 0.01]
+        position: 'top',
+        name: `${unit}`,
+        nameTextStyle: {
+          color: axisFontColor,
+          fontSize: axisFontSize
+        },
+        axisLine: {
+          lineStyle: {
+            type: 'solid',
+            color: axisLineColor,
+            width: '1',
+          },
+        },
+        axisLabel: {
+          textStyle: {
+            color: axisFontColor,
+            fontSize: axisFontSize,
+          },
+        },
+        axisTick: {
+          show: false,
+        },
+        splitLine: {
+          show:false,
+          lineStyle: {
+            color: '#2d3d53'
+          }
+        },
+        // interval:500,
+      },
+      yAxis: {
+        type: 'category',
+        data: xData,
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          lineStyle: {
+            type: 'solid',
+            color: axisLineColor,
+            width: '1',
+          }
+        },
+        axisLabel: {
+          textStyle: {
+            color: axisFontColor,
+            fontSize: yaxisFontSize,
+          },
+          rotate:rotate,
+        }
+      },
+    };
+
+
 
     const option = {
       backgroundColor,
@@ -189,54 +302,63 @@ export const Bar:FC<BarProps> = (props) => {
           color: '#363636',
         },
       },
-      xAxis: {
-        data: xData,
-        axisTick: {
-          show: false,
-        },
-        axisLine: {
-          lineStyle: {
-            type: 'solid',
-            color: axisLineColor,
-            width: '1',
-          }
-        },
-        axisLabel: {
-          textStyle: {
-            color: axisFontColor,
-            fontSize: axisFontSize,
-          },
-          rotate:rotate,
-        }
-      },
-      yAxis: [{
-        name: `${unit}`,
-        nameTextStyle: {
-          color: axisFontColor,
-          fontSize: yaxisFontSize
-        },
-        axisLine: {
-          lineStyle: {
-            type: 'solid',
-            color: axisLineColor,
-            width: '1',
-          },
-        },
-        axisLabel: {
-          textStyle: {
-            color: axisFontColor,
-            fontSize: yaxisFontSize,
-          },
-        },
-        splitLine: {
-          show:false,
-          lineStyle: {
-            color: '#2d3d53'
-          }
-        },
-        interval:500,
+      ...axisProps,
+      // xAxis: {
+      //   data: xData,
+      //   axisTick: {
+      //     show: false,
+      //   },
+      //   axisLine: {
+      //     lineStyle: {
+      //       type: 'solid',
+      //       color: axisLineColor,
+      //       width: '1',
+      //     }
+      //   },
+      //   axisLabel: {
+      //     textStyle: {
+      //       color: axisFontColor,
+      //       fontSize: axisFontSize,
+      //     },
+      //     rotate:rotate,
+      //   }
+      // },
+      // yAxis: [{
+      //   name: `${unit}`,
+      //   nameTextStyle: {
+      //     color: axisFontColor,
+      //     fontSize: yaxisFontSize
+      //   },
+      //   axisLine: {
+      //     lineStyle: {
+      //       type: 'solid',
+      //       color: axisLineColor,
+      //       width: '1',
+      //     },
+      //   },
+      //   axisLabel: {
+      //     textStyle: {
+      //       color: axisFontColor,
+      //       fontSize: yaxisFontSize,
+      //     },
+      //   },
+      //   splitLine: {
+      //     show:false,
+      //     lineStyle: {
+      //       color: '#2d3d53'
+      //     }
+      //   },
+      //   interval:500,
   
-      }],
+      // }],
+    //   xAxis: {
+    //     type: 'value',
+    //     boundaryGap: [0, 0.01]
+    // },
+    // yAxis: {
+    //     type: 'category',
+    //     data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+    // },
       series: [
         ...transSeries
       ]
@@ -266,6 +388,7 @@ Bar.defaultProps = {
   gridBottom: 30,
   gridTop:60,
   showLegend: true,
+  mode: 'normal',
   chartData: [
     {
       name:'数据一',
