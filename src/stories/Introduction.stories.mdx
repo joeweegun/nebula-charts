@@ -10,6 +10,7 @@ import StackAlt from './assets/stackalt.svg';
 
 import Bar from '../Components/Bar'
 import Pie from '../Components/Pie'
+import Annulus from '../Components/Annulus'
 
 <Meta title="Welcome/介绍" />
 
@@ -182,6 +183,34 @@ We recommend building UIs with a [**component-driven**](https://componentdriven.
           name:'数据3',
           color: '#FD866A',
           value: '180'
+        },
+      ]}
+    />
+  </div>
+  <div class="link-item">
+    <Annulus 
+      width={'100%'}
+      height={'300px'}
+      toolTipUnit={'次'}
+      bckColor={'rgba(255,255,255,0.05)'}
+      chartData={[
+        {
+          name:'数据1',
+          color: '#02AAB0',
+          value: 200,
+          maxValue: 300,
+        },
+        {
+          name:'数据2',
+          color: '#00CDAC',
+          value: 100,
+          maxValue: 300,
+        },
+        {
+          name:'数据3',
+          color: '#FD866A',
+          value: 180,
+          maxValue: 200,
         },
       ]}
     />

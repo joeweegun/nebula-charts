@@ -2,6 +2,9 @@ import React, { FC } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import echarts from 'echarts/lib/echarts';
 
+import { BaseOptions } from '../common.d';
+
+
 export interface BarDataInterface {
   name: string;
   colors: string[];
@@ -10,10 +13,6 @@ export interface BarDataInterface {
 } 
 
 export interface BarInterface {
-  /**
-  * 图表背景颜色
-  */
-  backgroundColor?: string;
   /**
   * x轴，y轴颜色
   */
@@ -47,35 +46,13 @@ export interface BarInterface {
   */
  rotate?:number | string;
   /**
-  * 上边距
-  */
- gridTop?:number | string;
-  /**
-  * 右边距
-  */
- gridRight?:number | string;
-  /**
-  * 下边距
-  */
- gridBottom?:number | string;
-  /**
-  * 下边距
-  */
- gridLeft?:number | string;
-  /**
-  * 图表宽度
-  */
-  width?: string;
-  /**
-  * 图表高度
-  */
-  height?: string;
-  /**
   * 数据源
   */
   chartData: Array<BarDataInterface>
 }
 
+
+export type BarProps = BarInterface & BaseOptions;
 
 /**
  * 页面中最常用的的按钮元素，适合于完成特定的交互
@@ -85,7 +62,7 @@ export interface BarInterface {
  * import { Bar } from 'nebula-charts'
  * ~~~
  */
-export const Bar:FC<BarInterface> = (props) => {
+export const Bar:FC<BarProps> = (props) => {
 
   const { 
     backgroundColor,
@@ -103,6 +80,7 @@ export const Bar:FC<BarInterface> = (props) => {
     gridRight,
     gridBottom,
     gridTop,
+    showLegend,
     chartData=[],
   } = props;
 
@@ -154,6 +132,8 @@ export const Bar:FC<BarInterface> = (props) => {
         containLabel: true,
       },
       legend: {
+        show: showLegend,
+        type: "scroll",
         data: [...Names],
         top: '5%',
         itemWidth: 12,
@@ -285,6 +265,7 @@ Bar.defaultProps = {
   gridRight: '10%',
   gridBottom: 30,
   gridTop:60,
+  showLegend: true,
   chartData: [
     {
       name:'数据一',

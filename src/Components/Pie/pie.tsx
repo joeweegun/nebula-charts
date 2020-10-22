@@ -1,6 +1,10 @@
 import React, { FC } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import echarts from 'echarts/lib/echarts';
+import { legendPos } from '../../utils/chart';
+
+import { BaseOptions } from '../common.d';
+
 
 export interface PieDataInterface {
   name: string;
@@ -9,48 +13,34 @@ export interface PieDataInterface {
 } 
 
 export interface PieInterface {
-  /**
-  * 图表背景颜色
-  */
-  backgroundColor?: string;
  /**
   * 单位
   */
  toolTipUnit?: string;
   /**
-  * 上边距
-  */
- gridTop?:number | string;
-  /**
-  * 右边距
-  */
- gridRight?:number | string;
-  /**
-  * 下边距
-  */
- gridBottom?:number | string;
-  /**
-  * 下边距
-  */
- gridLeft?:number | string;
-  /**
   * 背景圆颜色
   */
- bckColor: string;
-  /**
-  * 图表宽度
+ bckColor?: string;
+ /**
+  * 是否是实心圆
   */
-  width?: string;
-  /**
-  * 图表高度
+ isFill?: boolean;
+ /**
+  * 图例位置
   */
-  height?: string;
+ legendPosition?: string;
+ /**
+  * 图表中心
+  */
+ center?: string[];
   /**
   * 数据源
   */
   chartData: Array<PieDataInterface>
 }
 
+
+export type PieProps = PieInterface & BaseOptions;
 
 /**
  * 页面中最常用的的按钮元素，适合于完成特定的交互
@@ -60,7 +50,7 @@ export interface PieInterface {
  * import { Pie } from 'nebula-charts'
  * ~~~
  */
-export const Pie:FC<PieInterface> = (props) => {
+export const Pie:FC<PieProps> = (props) => {
 
   const { 
     backgroundColor,
@@ -72,7 +62,10 @@ export const Pie:FC<PieInterface> = (props) => {
     gridBottom,
     gridTop,
     bckColor,
+    isFill,
+    legendPosition,
     chartData=[],
+    center,
   } = props;
 
   const getOption = ():echarts.EChartOption<echarts.EChartOption.Series> => {
@@ -91,7 +84,7 @@ export const Pie:FC<PieInterface> = (props) => {
       legend: {
         type: "scroll",
         data: [...Names],
-        top: '5%',
+        // top: '5%',
         itemWidth: 12,
         itemHeight: 12,
         textStyle: {
@@ -99,6 +92,8 @@ export const Pie:FC<PieInterface> = (props) => {
           color: '#b3baca',
         },
         icon: 'circle',
+        ...legendPos[`${legendPosition}`]
+
       },
       tooltip: {
         trigger: 'item',
@@ -123,8 +118,8 @@ export const Pie:FC<PieInterface> = (props) => {
         {
           type: 'pie',
           z: 3,
-          center: ['50%', '50%'],
-          radius: ['25%', '40%'],
+          center: center,
+          radius: !isFill ? ['28%', '40%'] : ['0%', '40%'],
           clockwise: true,
           avoidLabelOverlap: true,
           hoverOffset: 3,
@@ -150,7 +145,29 @@ export const Pie:FC<PieInterface> = (props) => {
               a: {
                 padding: [-30, 15, -20, 15]
               }
-            }
+            },
+            normal: {
+              show: true,
+              formatter: ' {b|{b}}\n{per|{d}%}  ',
+              borderWidth: 1,
+              borderRadius: 2,
+              rich: {
+                b: {
+                  fontSize: 10,
+                },
+                per: {
+                  fontSize: 10,
+                  borderRadius: 2,
+                },
+              },
+            },
+            emphasis: {
+              show: true,
+              textStyle: {
+                fontSize: '12',
+                fontWeight: 'bold',
+              },
+            },
           },
           labelLine: {
             normal: {
@@ -170,7 +187,7 @@ export const Pie:FC<PieInterface> = (props) => {
           tooltip:{
               show:false
           },
-          center: ['50%', '50%'],
+          center: center,
           radius: ['40%', '50%'],
           hoverAnimation: false,
           clockWise: false,
@@ -207,6 +224,9 @@ Pie.defaultProps = {
   gridBottom: 30,
   gridTop:60,
   bckColor:'rgba(0,0,0,0.2)',
+  isFill: false,
+  legendPosition: 'right',
+  center: ['50%','50%'],
   chartData: [
     {
       name:'数据1',

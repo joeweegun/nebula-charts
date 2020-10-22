@@ -2,16 +2,16 @@ import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import Bar, { BarInterface } from './bar';
+import Bar, { BarProps } from './bar';
 
 export default {
+  name:'xxx',
   title: '组件库/Bar',
   component: Bar,
   argTypes: {
     backgroundColor: { control: 'color' },
     axisLineColor: { control: 'color' },
     axisFontColor: { control: 'color' },
-    colors:{ control:'colors' }
   },
   // parameters: {
   //   info: {
@@ -27,7 +27,7 @@ export default {
   // },
 } as Meta;
 
-const Template: Story<BarInterface> = (args) => <Bar {...args} />;
+const Template: Story<BarProps> = (args) => <Bar {...args} />;
 
 export const bar = Template.bind({});
 bar.args = {
