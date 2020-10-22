@@ -1,10 +1,10 @@
 
-[![Build Status](https://travis-ci.com/joeweegun/nebular-charts.svg?branch=main)](https://travis-ci.com/joeweegun/nebular-charts)
+[![Build Status](https://travis-ci.com/joeweegun/nebula-charts.svg?branch=main)](https://travis-ci.com/joeweegun/nebula-charts)
 [![Badge](https://img.shields.io/badge/link-996.icu-%23FF4D5B.svg?style=flat-square)](https://996.icu/#/zh_CN)
 ##欢迎使用nubula-charts
 帮助你快速完成项目中的图表需求，对常用的图表进行了二次封装，简化了echarts option配置项。
 
-##技术栈
+## 技术栈
 
 * Typescript
 * React
@@ -15,13 +15,13 @@
 ##有问题反馈
 在使用中有任何问题，欢迎反馈给我
 
-##安装方式
+## 安装方式
 ```
 npm install nebula-charts
 
 ```
 
-##使用方式
+## 使用方式
 
 ```javascript
 import { Bar } from 'nebula-charts'

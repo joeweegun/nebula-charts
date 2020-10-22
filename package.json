@@ -1,7 +1,26 @@
 {
   "name": "nebula-charts",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "author":"M_Joe",
+  "description": "React charts library",
+  "main":"dist/index.js",
+  "module":"dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "keywords": [
+    "echarts",
+    "react",
+    "charts",
+    "react echarts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joeweegun/nebula-charts"
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -30,9 +49,10 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "lint": "eslint --ext js,ts,tsx src --max-warnings 10",
-    "clean": "rimraf ./build",
+    "clean": "rimraf ./dist",
     "build-ts": "tsc -p tsconfig.build.json",
-    "build-css": "node-sass ./src/styles/index.scss ./build/index.scss"
+    "build-css": "node-sass ./src/styles/index.scss ./dist/index.scss",
+    "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build"
   },
   "husky": {
     "hooks": {

@@ -32,7 +32,7 @@ export interface BarInterface {
  /**
   * 柱形图宽度
   */
- barWidth?: string;
+ barWidth?: string | number;
  /**
   * Y轴单位
   */
