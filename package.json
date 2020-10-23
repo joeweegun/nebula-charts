@@ -1,6 +1,6 @@
 {
   "name": "nebula-charts",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": false,
   "author":"M_Joe",
   "description": "React charts library",
@@ -14,6 +14,7 @@
     "charts",
     "react echarts"
   ],
+  "homepage": "http://joe.pano.chat/",
   "repository": {
     "type": "git",
     "url": "https://github.com/joeweegun/nebula-charts"

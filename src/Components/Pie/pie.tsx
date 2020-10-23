@@ -47,7 +47,7 @@ export interface PieInterface {
 export type PieProps = PieInterface & BaseOptions;
 
 /**
- * 页面中最常用的的按钮元素，适合于完成特定的交互
+ * 欢迎使用nebula-charts
  * ## 引用方法
  * 
  * ~~~js
@@ -70,6 +70,7 @@ export const Pie:FC<PieProps> = (props) => {
     legendPosition,
     chartData=[],
     center,
+    showLegend,
     showLabeLine
   } = props;
 
@@ -87,6 +88,7 @@ export const Pie:FC<PieProps> = (props) => {
         containLabel: true,
       },
       legend: {
+        show: showLegend,
         type: "scroll",
         data: [...Names],
         // top: '5%',
@@ -235,6 +237,7 @@ Pie.defaultProps = {
   legendPosition: 'right',
   center: ['50%','50%'],
   showLabeLine:true,
+  showLegend: true,
   chartData: [
     {
       name:'数据1',

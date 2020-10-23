@@ -39,7 +39,7 @@ export interface AnnulusInterface {
 export type AnnulusProps = AnnulusInterface & BaseOptions;
 
 /**
- * 页面中最常用的的按钮元素，适合于完成特定的交互
+ * 欢迎使用nebula-charts
  * ## 引用方法
  * 
  * ~~~js
@@ -61,6 +61,7 @@ export const Annulus:FC<AnnulusProps> = (props) => {
     legendPosition,
     chartData=[],
     center,
+    showLegend
   } = props;
 
   const getOption = ():echarts.EChartOption<echarts.EChartOption.Series> => {
@@ -117,6 +118,7 @@ export const Annulus:FC<AnnulusProps> = (props) => {
         containLabel: true,
       },
       legend: {
+        show: showLegend,
         type: "scroll",
         data: Names,
         // top: '5%',
@@ -171,6 +173,7 @@ Annulus.defaultProps = {
   bckColor:'rgba(0,0,0,0.2)',
   legendPosition: 'right',
   center: ['50%','50%'],
+  showLegend: true,
   chartData: [
     {
       name:'数据1',

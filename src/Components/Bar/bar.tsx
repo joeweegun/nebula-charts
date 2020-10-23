@@ -59,7 +59,7 @@ export interface BarInterface {
 export type BarProps = BarInterface & BaseOptions;
 
 /**
- * 页面中最常用的的按钮元素，适合于完成特定的交互
+ * 欢迎使用nebula-charts
  * ## 引用方法
  * 
  * ~~~js
