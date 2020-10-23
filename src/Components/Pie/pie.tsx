@@ -240,14 +240,9 @@ Pie.defaultProps = {
   showLegend: true,
   chartData: [
     {
-      name:'数据1',
+      name:'无数据',
       color: '#02AAB0',
-      value: '200'
-    },
-    {
-      name:'数据2',
-      color: '#00CDAC',
-      value: '100'
+      value: '0'
     },
   ]
 }

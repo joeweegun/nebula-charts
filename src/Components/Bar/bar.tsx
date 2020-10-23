@@ -38,7 +38,7 @@ export interface BarInterface {
   */
  unit?: string;
  /**
-  * 柱状图模式，默认为normal，竖向柱状图， hor为横向
+  * 柱状图模式，默认为normal，竖向柱状图， horizontal为横向
   */
  mode?: string;
  /**
@@ -127,114 +127,118 @@ export const Bar:FC<BarProps> = (props) => {
     const Colors = chartData?.map((item:BarDataInterface) => item?.colors);
     const Names = chartData?.map((item:BarDataInterface) => item?.name);
 
-    const axisProps = mode === 'normal' ? {
-      xAxis: {
-        data: xData,
-        axisTick: {
-          show: false,
-        },
-        axisLine: {
-          lineStyle: {
-            type: 'solid',
-            color: axisLineColor,
-            width: '1',
-          }
-        },
-        axisLabel: {
-          textStyle: {
-            color: axisFontColor,
-            fontSize: axisFontSize,
-          },
-          rotate:rotate,
-        }
-      },
-      yAxis: [{
-        name: `${unit}`,
-        nameTextStyle: {
-          color: axisFontColor,
-          fontSize: yaxisFontSize
-        },
-        axisLine: {
-          lineStyle: {
-            type: 'solid',
-            color: axisLineColor,
-            width: '1',
-          },
-        },
-        axisLabel: {
-          textStyle: {
-            color: axisFontColor,
-            fontSize: yaxisFontSize,
-          },
-        },
-        splitLine: {
-          show:false,
-          lineStyle: {
-            color: '#2d3d53'
-          }
-        },
-        // interval:500,
-  
-      }],
-    } : {
-      xAxis: {
-        type: 'value',
-        // boundaryGap: [0, 0.01]
-        position: 'top',
-        name: `${unit}`,
-        nameTextStyle: {
-          color: axisFontColor,
-          fontSize: axisFontSize
-        },
-        axisLine: {
-          lineStyle: {
-            type: 'solid',
-            color: axisLineColor,
-            width: '1',
-          },
-        },
-        axisLabel: {
-          textStyle: {
-            color: axisFontColor,
-            fontSize: axisFontSize,
-          },
-        },
-        axisTick: {
-          show: false,
-        },
-        splitLine: {
-          show:false,
-          lineStyle: {
-            color: '#2d3d53'
-          }
-        },
-        // interval:500,
-      },
-      yAxis: {
-        type: 'category',
-        data: xData,
-        axisTick: {
-          show: false,
-        },
-        axisLine: {
-          lineStyle: {
-            type: 'solid',
-            color: axisLineColor,
-            width: '1',
-          }
-        },
-        axisLabel: {
-          textStyle: {
-            color: axisFontColor,
-            fontSize: yaxisFontSize,
-          },
-          rotate:rotate,
-        }
-      },
-    };
+    let axisProps = {};
 
+    if(mode === 'normal'){
+      axisProps = {
+        xAxis: {
+          data: xData,
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              type: 'solid',
+              color: axisLineColor,
+              width: '1',
+            }
+          },
+          axisLabel: {
+            textStyle: {
+              color: axisFontColor,
+              fontSize: axisFontSize,
+            },
+            rotate:rotate,
+          }
+        },
+        yAxis: [{
+          name: `${unit}`,
+          nameTextStyle: {
+            color: axisFontColor,
+            fontSize: yaxisFontSize
+          },
+          axisLine: {
+            lineStyle: {
+              type: 'solid',
+              color: axisLineColor,
+              width: '1',
+            },
+          },
+          axisLabel: {
+            textStyle: {
+              color: axisFontColor,
+              fontSize: yaxisFontSize,
+            },
+          },
+          splitLine: {
+            show:false,
+            lineStyle: {
+              color: '#2d3d53'
+            }
+          },
+          // interval:500,
+        }],
+      };
+    }
+    if(mode === 'horizontal'){
+      axisProps = {
+        xAxis: {
+          type: 'value',
+          position: 'top',
+          name: `${unit}`,
+          nameTextStyle: {
+            color: axisFontColor,
+            fontSize: axisFontSize
+          },
+          axisLine: {
+            lineStyle: {
+              type: 'solid',
+              color: axisLineColor,
+              width: '1',
+            },
+          },
+          axisLabel: {
+            textStyle: {
+              color: axisFontColor,
+              fontSize: axisFontSize,
+            },
+          },
+          axisTick: {
+            show: false,
+          },
+          splitLine: {
+            show:false,
+            lineStyle: {
+              color: '#2d3d53'
+            }
+          },
+          // interval:500,
+        },
+        yAxis: {
+          type: 'category',
+          data: xData,
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              type: 'solid',
+              color: axisLineColor,
+              width: '1',
+            }
+          },
+          axisLabel: {
+            textStyle: {
+              color: axisFontColor,
+              fontSize: yaxisFontSize,
+            },
+            rotate:rotate,
+          }
+        },
+      };
+    }
 
-
+    
     const option = {
       backgroundColor,
       grid: {
@@ -263,14 +267,10 @@ export const Bar:FC<BarProps> = (props) => {
           let relVal = `${params[0].name}<br />`;
           for (let i = 0, l = params.length; i < l; i += 1) {
             const marker = `<span class="tooltip-marker" style="background-image: linear-gradient(${Colors[i][0]}, ${Colors[i][1]});"></span>`
-            // relVal += `${marker} ${params[i].name} : ${params[i].value}${unit}<br/>`;
             relVal += `      ${marker} ${params[i].value}${toolTipUnit}      <br/>`;
           }
           return relVal;
         },
-        // axisPointer: {
-        //   type: 'shadow'
-        // },
         axisPointer: {
           type: 'cross',
           animation: false,
@@ -303,62 +303,6 @@ export const Bar:FC<BarProps> = (props) => {
         },
       },
       ...axisProps,
-      // xAxis: {
-      //   data: xData,
-      //   axisTick: {
-      //     show: false,
-      //   },
-      //   axisLine: {
-      //     lineStyle: {
-      //       type: 'solid',
-      //       color: axisLineColor,
-      //       width: '1',
-      //     }
-      //   },
-      //   axisLabel: {
-      //     textStyle: {
-      //       color: axisFontColor,
-      //       fontSize: axisFontSize,
-      //     },
-      //     rotate:rotate,
-      //   }
-      // },
-      // yAxis: [{
-      //   name: `${unit}`,
-      //   nameTextStyle: {
-      //     color: axisFontColor,
-      //     fontSize: yaxisFontSize
-      //   },
-      //   axisLine: {
-      //     lineStyle: {
-      //       type: 'solid',
-      //       color: axisLineColor,
-      //       width: '1',
-      //     },
-      //   },
-      //   axisLabel: {
-      //     textStyle: {
-      //       color: axisFontColor,
-      //       fontSize: yaxisFontSize,
-      //     },
-      //   },
-      //   splitLine: {
-      //     show:false,
-      //     lineStyle: {
-      //       color: '#2d3d53'
-      //     }
-      //   },
-      //   interval:500,
-  
-      // }],
-    //   xAxis: {
-    //     type: 'value',
-    //     boundaryGap: [0, 0.01]
-    // },
-    // yAxis: {
-    //     type: 'category',
-    //     data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
-    // },
       series: [
         ...transSeries
       ]
@@ -391,10 +335,10 @@ Bar.defaultProps = {
   mode: 'normal',
   chartData: [
     {
-      name:'数据一',
+      name:'-',
       colors:['#5ef3ff','#06a4f4'],
-      xData: [10,11,12],
-      yData: [10,11,12]
+      xData: [0],
+      yData: [0]
     }
   ]
 }

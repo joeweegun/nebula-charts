@@ -2,10 +2,10 @@
   "name": "nebula-charts",
   "version": "0.1.2",
   "private": false,
-  "author":"M_Joe",
+  "author": "M_Joe",
   "description": "React charts library",
-  "main":"dist/index.js",
-  "module":"dist/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
   "keywords": [
@@ -35,6 +35,9 @@
     "cross-env": "^7.0.2",
     "echarts": "^4.9.0",
     "echarts-for-react": "^2.0.16",
+    "echarts-liquidfill": "^2.0.6",
+    "lint-staged": "^10.4.2",
+    "prettier": "^2.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
@@ -57,11 +60,18 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test:nowatch && npm run lint"
+      "pre-commit": "lint-staged && npm test:nowatch && npm run lint"
     }
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
   },
   "browserslist": {
     "production": [
