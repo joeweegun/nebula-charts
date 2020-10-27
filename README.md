@@ -11,29 +11,30 @@
 * Echarts
 * Scss
 
-
-##有问题反馈
-在使用中有任何问题，欢迎反馈给我
-
 ## 安装方式
 ```
 npm install nebula-charts
 
 ```
 
-## 使用方式
+## 使用事例
+
+```
+注意：数据属性chartData为必填项，其他图表相关属性为非必填项，非必填项可根据设计图进行适当更改
+
+```
 
 ```javascript
 import { Bar } from 'nebula-charts'
 
 <Bar 
-  width={'100%'}
-  height={'300px'}
-  unit={'单位/次'}
-  toolTipUnit={'次'}
+  width='100%'
+  height='300px'
+  unit='单位/次'
+  toolTipUnit='次'
   barWidth={15}
-  axisLineColor={'#8e9eab'}
-  axisFontColor={'#8e9eab'}
+  axisLineColor='#8e9eab'
+  axisFontColor='#8e9eab'
   rotate={0}
   chartData={[
     {

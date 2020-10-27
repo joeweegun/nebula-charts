@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import echarts from 'echarts/lib/echarts';
 
-import { BaseOptions } from '../common.d';
+import { BaseOptions,BaseDataZoom } from '../common.d';
 
 
 export interface BarDataInterface {
@@ -49,6 +49,18 @@ export interface BarInterface {
   * X轴文字倾斜角度
   */
  rotate?:number | string;
+   /**
+  * 是否显示底部缩放条，默认false
+  */
+ showDataZoom?: boolean;
+  /**
+  * 底部进度条默认起点，默认为0
+  */
+ dataZoomStart?: number;
+  /**
+  * 底部进度条默认终点，默认为100
+  */
+ dataZoomEnd?: number;
   /**
   * 数据源
   */
@@ -85,6 +97,9 @@ export const Bar:FC<BarProps> = (props) => {
     gridBottom,
     gridTop,
     showLegend,
+    showDataZoom,
+    dataZoomStart=0,
+    dataZoomEnd=100,
     chartData=[],
     mode,
   } = props;
@@ -123,6 +138,12 @@ export const Bar:FC<BarProps> = (props) => {
         data: yData
       };
     });
+
+    let transDataZoom = {};
+    if(showDataZoom){
+      transDataZoom = BaseDataZoom(dataZoomStart,dataZoomEnd);
+    }
+
     const xData = chartData?.length>0 && chartData[0]?.xData;
     const Colors = chartData?.map((item:BarDataInterface) => item?.colors);
     const Names = chartData?.map((item:BarDataInterface) => item?.name);
@@ -303,6 +324,7 @@ export const Bar:FC<BarProps> = (props) => {
         },
       },
       ...axisProps,
+      ...transDataZoom,
       series: [
         ...transSeries
       ]
@@ -333,6 +355,9 @@ Bar.defaultProps = {
   gridTop:60,
   showLegend: true,
   mode: 'normal',
+  showDataZoom: false,
+  dataZoomStart:0,
+  dataZoomEnd:100,
   chartData: [
     {
       name:'-',

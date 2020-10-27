@@ -11,6 +11,7 @@ import StackAlt from './assets/stackalt.svg';
 import Bar from '../Components/Bar'
 import Pie from '../Components/Pie'
 import Annulus from '../Components/Annulus'
+import Liquid from '../Components/Liquid'
 
 <Meta title="Welcome/介绍" />
 
@@ -120,7 +121,7 @@ import Annulus from '../Components/Annulus'
 
 # 欢迎使用nubula-charts
 
-**nubula-charts**能帮助你快速完成项目中的图表需求，对常用的图表进行了二次封装，简化了echarts option配置流程。
+**nubula-charts**是基于react echarts再次封装的chart组件库，对常用的图表进行了二次封装，简化了echarts option配置流程，能帮助你快速完成项目中的图表需求。
 
 <!-- Browse example stories now by navigating to them in the sidebar.
 View their code in the `src/storybook-examples` directory to learn how they work.
@@ -138,13 +139,41 @@ We recommend building UIs with a [**component-driven**](https://componentdriven.
   </a> */}
   <div class="link-item">
     <Bar 
-      width={'100%'}
-      height={'300px'}
-      unit={'单位/次'}
-      toolTipUnit={'次'}
+      width='100%'
+      height='300px'
+      unit='单位/次'
+      toolTipUnit='次'
       barWidth={15}
-      axisLineColor={'#8e9eab'}
-      axisFontColor={'#8e9eab'}
+      axisLineColor='#8e9eab'
+      axisFontColor='#8e9eab'
+      rotate={0}
+      chartData={[
+        {
+          name:'数据一',
+          colors: ['#02AAB0','#00CDAC'],
+          xData: ['一月','二月','三月'],
+          yData: [10,11,12]
+        },
+        {
+          name:'数据二',
+          colors: ['#8E2DE2','#4A00E0'],
+          xData: ['一月','二月','三月'],
+          yData: [20,6,32]
+        }
+      ]}
+    />
+  </div>
+  <div class="link-item">
+    <Bar 
+      width='100%'
+      height='300px'
+      gridBottom={50}
+      showDataZoom
+      unit='单位/次'
+      toolTipUnit='次'
+      barWidth={15}
+      axisLineColor='#8e9eab'
+      axisFontColor='#8e9eab'
       rotate={0}
       chartData={[
         {
@@ -164,10 +193,38 @@ We recommend building UIs with a [**component-driven**](https://componentdriven.
   </div>
   <div class="link-item">
     <Pie 
-      width={'100%'}
-      height={'300px'}
-      toolTipUnit={'次'}
-      bckColor={'rgba(255,255,255,0.05)'}
+      width='100%'
+      height='300px'
+      toolTipUnit='次'
+      legendPosition='top'
+      bckColor='rgba(255,255,255,0.05)'
+      chartData={[
+        {
+          name:'数据1',
+          color: '#02AAB0',
+          value: '200'
+        },
+        {
+          name:'数据2',
+          color: '#00CDAC',
+          value: '100'
+        },
+        {
+          name:'数据3',
+          color: '#FD866A',
+          value: '180'
+        },
+      ]}
+    />
+  </div>
+  <div class="link-item">
+    <Pie 
+      width='100%'
+      height='300px'
+      toolTipUnit='次'
+      isFill
+      legendPosition='top'
+      bckColor='rgba(255,255,255,0.05)'
       chartData={[
         {
           name:'数据1',
@@ -213,6 +270,32 @@ We recommend building UIs with a [**component-driven**](https://componentdriven.
           maxValue: 200,
         },
       ]}
+    />
+  </div>
+  <div class="link-item">
+    <Liquid
+      backgroundColor="#011c3a"
+      bckColor="rgba(255,255,255,0.1)"
+      borderColor="#FE8704"
+      borderWidth={2}
+      center={[
+        '50%',
+        '50%'
+      ]}
+      chartData={{
+        name: '1',
+        value: '0.6'
+      }}
+      fontSize={28}
+      gridBottom={30}
+      gridLeft="10%"
+      gridRight="10%"
+      gridTop={30}
+      height="300px"
+      mainColor="#FE8704"
+      radius="60%"
+      unit="%"
+      width="100%"
     />
   </div>
   
