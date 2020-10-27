@@ -119,7 +119,7 @@ export const Pie:FC<PieProps> = (props) => {
             数量：${parms.data.value} ${toolTipUnit}</br>
             占比：${parms.percent}%`;
           return str;
-      }
+        }
       },
       series: [
         {
