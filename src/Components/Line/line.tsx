@@ -66,6 +66,18 @@ export interface BarInterface {
   */
  rotate?:number | string;
   /**
+  * 鼠标浮动标尺线颜色，默认red
+  */
+ crossLineColor?: string;
+  /**
+  * 鼠标浮动标尺线,对应文字颜色，默认white
+  */
+ crossFontColor?: string;
+ /**
+  * 鼠标浮动标尺线类型，默认虚线dashed，可选实线solid
+  */
+ crossLineStyle?: string;
+  /**
   * 数据源
   */
   chartData: Array<BarDataInterface>
@@ -105,6 +117,9 @@ export const Line:FC<BarProps> = (props) => {
     showDataZoom,
     dataZoomStart=0,
     dataZoomEnd=100,
+    crossLineColor,
+    crossFontColor,
+    crossLineStyle,
     chartData=[],
     smooth,
   } = props;
@@ -222,23 +237,25 @@ export const Line:FC<BarProps> = (props) => {
           type: 'cross',
           animation: false,
           label: {
-            backgroundColor: 'red',
-            borderColor: 'red',
+            backgroundColor: crossLineColor,
+            borderColor: crossLineColor,
             borderWidth: 1,
             shadowBlur: 0,
             shadowOffsetX: 0,
             shadowOffsetY: 0,
             textStyle: {
-              color: '#ffffff',
+              color: crossFontColor,
             },
             precision: 0,
           },
           lineStyle: {
-            color: 'red',
+            type: crossLineStyle,
+            color: crossLineColor,
           },
           crossStyle: {
-            color: 'red',
-            type: 'solid',
+            type: crossLineStyle,
+            color: crossLineColor,
+            // type: 'solid',
           },
         },
         backgroundColor: 'rgba(254,254,254,0.85)',
@@ -332,6 +349,9 @@ Line.defaultProps = {
   dataZoomStart:0,
   dataZoomEnd:100,
   lineWidth: 2,
+  crossLineColor:'red',
+  crossFontColor:'white',
+  crossLineStyle:'dashed',
   chartData: [
     {
       name:'-',

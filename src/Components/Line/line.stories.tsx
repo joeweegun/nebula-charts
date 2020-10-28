@@ -28,6 +28,8 @@ normal.args = {
   rotate: 0,
   smooth: true,
   lineWidth: 3,
+  crossLineColor:'#1EA7FD',
+  crossFontColor:'white',
   chartData: [
     {
       name:'数据一',

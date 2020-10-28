@@ -45,6 +45,18 @@ export interface BarInterface {
   * Y轴单位
   */
  toolTipUnit?: string;
+ /**
+  * 鼠标浮动标尺线颜色，默认red
+  */
+ crossLineColor?: string;
+  /**
+  * 鼠标浮动标尺线,对应文字颜色，默认white
+  */
+ crossFontColor?: string;
+  /**
+  * 鼠标浮动标尺线类型，默认虚线dashed，可选实线solid
+  */
+ crossLineStyle?: string;
   /**
   * X轴文字倾斜角度
   */
@@ -100,6 +112,9 @@ export const Bar:FC<BarProps> = (props) => {
     showDataZoom,
     dataZoomStart=0,
     dataZoomEnd=100,
+    crossLineColor,
+    crossFontColor,
+    crossLineStyle,
     chartData=[],
     mode,
   } = props;
@@ -296,23 +311,25 @@ export const Bar:FC<BarProps> = (props) => {
           type: 'cross',
           animation: false,
           label: {
-            backgroundColor: 'red',
-            borderColor: 'red',
+            backgroundColor: crossLineColor,
+            borderColor: crossLineColor,
             borderWidth: 1,
             shadowBlur: 0,
             shadowOffsetX: 0,
             shadowOffsetY: 0,
             textStyle: {
-              color: '#ffffff',
+              color: crossFontColor,
             },
             precision: 0,
           },
           lineStyle: {
-            color: 'red',
+            type: crossLineStyle,
+            color: crossLineColor,
           },
           crossStyle: {
-            color: 'red',
-            type: 'solid',
+            color: crossLineColor,
+            // type: 'solid',
+            type: crossLineStyle,
           },
         },
         backgroundColor: 'rgba(254,254,254,0.85)',
@@ -333,7 +350,7 @@ export const Bar:FC<BarProps> = (props) => {
     return option;
   }
 
-  return <ReactEcharts option={getOption()} style={{ width: `${width}`, height: `${height}` }} />
+  return <ReactEcharts option={getOption()} style={{ width: `${width}`, height: `${height}` }}/>
 
 }
 
@@ -358,6 +375,9 @@ Bar.defaultProps = {
   showDataZoom: false,
   dataZoomStart:0,
   dataZoomEnd:100,
+  crossLineColor:'red',
+  crossFontColor:'white',
+  crossLineStyle: 'dashed',
   chartData: [
     {
       name:'-',

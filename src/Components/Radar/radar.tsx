@@ -193,11 +193,11 @@ Radar.defaultProps = {
       name:'无数据',
       areaColor: '#02AAB0',
       borderColor:'31e586',
-      value: [30,100,200,150,150,230,190]
+      value: [0,0,0,0,0,0,0]
     },
   ],
   indicatorData: [
-    { name: '指标1', max: 100},
+    { name: '无指标', max: 100},
   ]
 }
 

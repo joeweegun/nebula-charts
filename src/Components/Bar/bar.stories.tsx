@@ -39,6 +39,8 @@ normal.args = {
   axisFontColor: '#8e9eab',
   rotate: 0,
   mode:'normal',
+  crossLineColor:'#1EA7FD',
+  crossFontColor:'white',
   chartData: [
     {
       name:'数据一',
