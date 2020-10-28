@@ -74,6 +74,10 @@ export interface BarInterface {
   */
  dataZoomStart?: number;
   /**
+  * x轴位置，默认bottom,可选top
+  */
+ xAxisPosition?:string;
+  /**
   * 底部进度条默认终点，默认为100
   */
  dataZoomEnd?: number;
@@ -120,6 +124,7 @@ export const Bar:FC<BarProps> = (props) => {
     crossFontColor,
     crossLineStyle,
     barBorderRadius,
+    xAxisPosition,
     chartData=[],
     mode,
   } = props;
@@ -225,7 +230,7 @@ export const Bar:FC<BarProps> = (props) => {
       axisProps = {
         xAxis: {
           type: 'value',
-          position: 'top',
+          position: xAxisPosition,
           name: `${unit}`,
           nameTextStyle: {
             color: axisFontColor,
@@ -380,10 +385,11 @@ Bar.defaultProps = {
   showDataZoom: false,
   dataZoomStart:0,
   dataZoomEnd:100,
-  barBorderRadius:30,
+  barBorderRadius:2,
   crossLineColor:'red',
   crossFontColor:'white',
   crossLineStyle: 'dashed',
+  xAxisPosition:'bottom',
   chartData: [
     {
       name:'-',

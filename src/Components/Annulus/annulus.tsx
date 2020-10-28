@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import echarts from 'echarts/lib/echarts';
-import { legendPos } from '../../utils/chart';
+import { legendPos,hexToRGBA } from '../../utils/chart';
 
 import { BaseOptions } from '../common.d';
 
@@ -17,10 +17,6 @@ export interface AnnulusInterface {
   * 单位
   */
  toolTipUnit?: string;
-  /**
-  * 背景圆颜色
-  */
- bckColor: string;
   /**
   * 图例位置
   */
@@ -57,7 +53,6 @@ export const Annulus:FC<AnnulusProps> = (props) => {
     gridRight,
     gridBottom,
     gridTop,
-    bckColor,
     legendPosition,
     chartData=[],
     center,
@@ -65,14 +60,7 @@ export const Annulus:FC<AnnulusProps> = (props) => {
   } = props;
 
   const getOption = ():echarts.EChartOption<echarts.EChartOption.Series> => {
-    // const Colors = chartData?.map((item:AnnulusInterface) => item?.color);
     const Names = chartData?.map((item:AnnulusDataInterface) => item?.name);
-
-    const placeHolderStyle = {
-      normal: {
-        color: bckColor,
-      },
-    };
 
     const transSeries = chartData?.map((item:AnnulusDataInterface,index:number) => {
       return  {
@@ -97,8 +85,12 @@ export const Annulus:FC<AnnulusProps> = (props) => {
           data: [
             {
               value: item?.maxValue,
-              name: 'invisible',
-              itemStyle: placeHolderStyle
+              name: item?.name,
+              itemStyle: {
+                normal: {
+                  color: hexToRGBA(item?.color,0.06)
+                },
+              },
             },
             {
               value: item?.value,
@@ -133,9 +125,6 @@ export const Annulus:FC<AnnulusProps> = (props) => {
       },
       tooltip: {
         trigger: 'item',
-        // borderColor: 'rgba(255,255,255,.3)',
-        // backgroundColor: 'rgba(13,5,30,.6)',
-        // borderWidth: 1,
         backgroundColor: 'rgba(254,254,254,0.85)',
         borderColor: '#ddd',
         borderWidth: 1,
@@ -144,10 +133,8 @@ export const Annulus:FC<AnnulusProps> = (props) => {
           color: '#363636',
         },
         formatter: (parms:any) => {
-          // const str = `${parms.marker} ${parms.data.name} </br>
-          //   数量：${parms.data.value} ${toolTipUnit}</br>
-          //   占比：${parms.percent}%`;
-          const str = `${parms.marker} ${parms.data.name}: ${parms.data.value}${toolTipUnit}`;
+          // const str = `${parms.marker} ${parms.data.name}: ${parms.data.value}${toolTipUnit}`;
+          const str = `${parms.data.name}: ${parms.data.value}${toolTipUnit}`;
           return str;
         }
       },
@@ -170,7 +157,6 @@ Annulus.defaultProps = {
   gridRight: '10%',
   gridBottom: 30,
   gridTop:60,
-  bckColor:'rgba(0,0,0,0.2)',
   legendPosition: 'right',
   center: ['50%','50%'],
   showLegend: true,

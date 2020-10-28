@@ -4,6 +4,11 @@
 ##  欢迎使用nubula-charts
 帮助你快速完成项目中的图表需求，对常用的图表进行了二次封装，简化了echarts option配置项。
 
+## 请使用npm安装！！！
+## Please install via npm ！！！
+使用yarn安装可能会在代码提交时发生错误，推荐使用npm安装此插件
+
+
 ## 技术栈
 
 * Typescript

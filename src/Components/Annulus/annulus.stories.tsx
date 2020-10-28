@@ -8,8 +8,7 @@ export default {
   title: '组件库/Annulus',
   component: Annulus,
   argTypes: {
-    backgroundColor: { control: 'color' },
-    bckColor: { control: 'color' },
+    backgroundColor: { control: 'color' }
   },
 } as Meta;
 
@@ -20,7 +19,6 @@ annulus.args = {
   width: '500px',
   height: '500px',
   toolTipUnit: '%',
-  bckColor:'rgba(124,228,245,0.2)',
   chartData: [
     {
       name:'数据1',
