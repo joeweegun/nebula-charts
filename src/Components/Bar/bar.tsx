@@ -34,6 +34,10 @@ export interface BarInterface {
   */
  barWidth?: string | number;
  /**
+  * 柱形圆角，默认30，number类型
+  */
+ barBorderRadius?:number;
+ /**
   * Y轴单位
   */
  unit?: string;
@@ -115,6 +119,7 @@ export const Bar:FC<BarProps> = (props) => {
     crossLineColor,
     crossFontColor,
     crossLineStyle,
+    barBorderRadius,
     chartData=[],
     mode,
   } = props;
@@ -138,7 +143,7 @@ export const Bar:FC<BarProps> = (props) => {
               offset: 1,
               color: colors[1]
             }], false),
-            barBorderRadius: [30, 30, 30, 30],
+            barBorderRadius: [barBorderRadius, barBorderRadius, barBorderRadius, barBorderRadius],
           }
         },
         label: {
@@ -375,6 +380,7 @@ Bar.defaultProps = {
   showDataZoom: false,
   dataZoomStart:0,
   dataZoomEnd:100,
+  barBorderRadius:30,
   crossLineColor:'red',
   crossFontColor:'white',
   crossLineStyle: 'dashed',
