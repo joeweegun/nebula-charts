@@ -26,6 +26,14 @@ export interface PieInterface {
   */
  isFill?: boolean;
  /**
+  * 圆的半径，number,默认为60，最大不超过100
+  */
+ radius?: number;
+ /**
+  * 圆环的宽度，number，默认12
+  */
+ radiusRange?: number;
+ /**
   * 是否显示标注线
   */
  showLabeLine?: boolean;
@@ -71,7 +79,9 @@ export const Pie:FC<PieProps> = (props) => {
     chartData=[],
     center,
     showLegend,
-    showLabeLine
+    showLabeLine,
+    radius=60,
+    radiusRange=12
   } = props;
 
   const getOption = ():echarts.EChartOption<echarts.EChartOption.Series> => {
@@ -126,7 +136,7 @@ export const Pie:FC<PieProps> = (props) => {
           type: 'pie',
           z: 3,
           center: center,
-          radius: !isFill ? ['28%', '40%'] : ['0%', '40%'],
+          radius: !isFill ? [`${radius - radiusRange}%`, `${radius}%`] : ['0%', `${radius}%`],
           clockwise: true,
           avoidLabelOverlap: true,
           hoverOffset: 3,
@@ -141,8 +151,11 @@ export const Pie:FC<PieProps> = (props) => {
           },
           label: {
             show: true,
-            position: 'outside',
+            // position: 'outside',
             formatter: '{a|{b}：{d}%}\n{hr|}',
+            position:'outer',
+            alignTo: 'edge',
+            margin:10,
             rich: {
               hr: {
                 backgroundColor: 't',
@@ -157,7 +170,26 @@ export const Pie:FC<PieProps> = (props) => {
             },
             normal: {
               show: showLabeLine,
-              formatter: ' {b|{b}}\n{per|{d}%}  ',
+              // formatter: ' {b|{b}}\n{per|{d}%}  ',
+              formatter: (v:any) => {
+                let text = v.name;
+                let value_format = v.value;
+                let percent_format = Math.round(v.percent) + '%';
+                if (text.length <= 6) {
+                  // return `${text}\n${value_format}\n${percent_format}`;
+                  return `${text}\n${percent_format}`;
+                } else if (text.length > 6 && text.length <= 12) {
+                  return text = `${text.slice(0, 6)}\n${text.slice(6)}\n${percent_format}`
+                } else if (text.length > 12 && text.length <= 18) {
+                  return text = `${text.slice(0, 6)}\n${text.slice(6, 12)}\n${text.slice(12)}\n${percent_format}`
+                } else if (text.length > 18 && text.length <= 24) {
+                  return text = `${text.slice(0, 6)}\n${text.slice(6, 12)}\n${text.slice(12, 18)}\n${text.slice(18)}\n${percent_format}`
+                } else if (text.length > 24 && text.length <= 30) {
+                  return text = `${text.slice(0, 6)}\n${text.slice(6, 12)}\n${text.slice(12, 18)}\n${text.slice(18, 24)}\n${text.slice(24)}\n${percent_format}`
+                } else if (text.length > 30) {
+                  return text = `${text.slice(0, 6)}\n${text.slice(6, 12)}\n${text.slice(12, 18)}\n${text.slice(18, 24)}\n${text.slice(24, 30)}\n${text.slice(30)}\n${percent_format}`
+                }
+              },
               borderWidth: 1,
               borderRadius: 2,
               rich: {
@@ -197,7 +229,7 @@ export const Pie:FC<PieProps> = (props) => {
               show:false
           },
           center: center,
-          radius: ['40%', '50%'],
+          radius: [`${radius}%`, `${radius + radiusRange - 4}%`],
           hoverAnimation: false,
           clockWise: false,
           itemStyle: {
@@ -238,6 +270,8 @@ Pie.defaultProps = {
   center: ['50%','50%'],
   showLabeLine:true,
   showLegend: true,
+  radius:60,
+  radiusRange:12,
   chartData: [
     {
       name:'无数据',
