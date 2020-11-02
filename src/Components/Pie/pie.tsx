@@ -173,7 +173,7 @@ export const Pie:FC<PieProps> = (props) => {
               // formatter: ' {b|{b}}\n{per|{d}%}  ',
               formatter: (v:any) => {
                 let text = v.name;
-                let value_format = v.value;
+                // let value_format = v.value;
                 let percent_format = Math.round(v.percent) + '%';
                 if (text.length <= 6) {
                   // return `${text}\n${value_format}\n${percent_format}`;

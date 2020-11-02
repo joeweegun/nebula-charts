@@ -50,6 +50,10 @@ export interface BarInterface {
   */
  showDataZoom?: boolean;
   /**
+  * 是否显示面积图，默认false
+  */
+ showAreaStyle?:boolean;
+  /**
   * 底部进度条默认起点，默认为0
   */
  dataZoomStart?: number;
@@ -121,15 +125,35 @@ export const Line:FC<BarProps> = (props) => {
     crossFontColor,
     crossLineStyle,
     chartData=[],
+    showAreaStyle,
     smooth,
   } = props;
 
+  
+
   const getOption = ():echarts.EChartOption<echarts.EChartOption.Series> => {
+
     const transSeries = chartData?.map((item:BarDataInterface) => {
       const {
         colors,
         yData
       } = item;
+      let areaStyle = {};
+      if(showAreaStyle){
+        areaStyle = {
+          areaStyle : { 
+            color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+              offset: 0,
+              color: 'rgba(58,132,255,0)'
+            }, {
+              offset: 1,
+              color: colors[0]
+            }]),
+          }
+        }
+      }
+
+  
       return {
         name: item?.name,
         type: 'line',
@@ -145,6 +169,7 @@ export const Line:FC<BarProps> = (props) => {
               color: colors[1]
             }], false),
             barBorderRadius: [30, 30, 30, 30],
+            ...areaStyle
             // areaStyle: { 
             //   color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
             //     offset: 0,
@@ -352,6 +377,7 @@ Line.defaultProps = {
   crossLineColor:'red',
   crossFontColor:'white',
   crossLineStyle:'dashed',
+  showAreaStyle:false,
   chartData: [
     {
       name:'-',
