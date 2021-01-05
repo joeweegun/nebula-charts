@@ -360,7 +360,7 @@ export const Bar:FC<BarProps> = (props) => {
     return option;
   }
 
-  return <ReactEcharts option={getOption()} style={{ width: `${width}`, height: `${height}` }}/>
+  return <ReactEcharts notMerge option={getOption()} style={{ width: `${width}`, height: `${height}` }}/>
 
 }
 
