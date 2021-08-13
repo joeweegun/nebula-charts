@@ -1,6 +1,6 @@
 {
   "name": "nebula-charts",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "private": false,
   "author": "M_Joe",
   "description": "React charts library",
@@ -31,8 +31,6 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-    "axios": "^0.20.0",
-    "core-js": "^3.16.1",
     "cross-env": "^7.0.2",
     "echarts": "^4.9.0",
     "echarts-for-react": "^2.0.16",
