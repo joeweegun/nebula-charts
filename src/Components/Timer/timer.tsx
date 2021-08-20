@@ -28,6 +28,8 @@ export interface TimerCompoInterface {
   isShowWeek?: boolean;
 }
 
+const weeks = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+
 
 export type TimerCompoProps = TimerCompoInterface;
 
@@ -49,8 +51,6 @@ export const TimerCompo:FC<TimerCompoProps> = (props) => {
     isShowHms,
     isShowWeek,
   } = props;
-
-  const weeks = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
 
   const timer = useRef<any>(null)
   const [ currentTime, setCurrentTime ] = useState<string>('')
@@ -85,7 +85,6 @@ export const TimerCompo:FC<TimerCompoProps> = (props) => {
 
   // ts-ignore
   return <div><span style={{fontSize,fontWeight,color:fontColor}}>{currentTime}</span></div>
-
 }
 
 TimerCompo.defaultProps = {

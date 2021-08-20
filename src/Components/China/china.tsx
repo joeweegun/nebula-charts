@@ -143,9 +143,10 @@ export const ChinaMap:FC<BarProps> = (props) => {
           data: chartData,
           symbolSize: 20,
           symbol: 'circle',
-          // 			symbolSize: function (val) {
-          // 				return val[2];
-          // 			},
+          // symbolSize: (val:any) => {
+          //   console.log('9999999', val)
+          //   return val[2];
+          // },
           label: {
             normal: {
               show: false,

@@ -1,6 +1,6 @@
 {
   "name": "nebula-charts",
-  "version": "0.2.9",
+  "version": "0.3.2",
   "private": false,
   "author": "M_Joe",
   "description": "React charts library",
@@ -23,25 +23,13 @@
     "dist"
   ],
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/echarts": "^4.8.3",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "cross-env": "^7.0.2",
     "echarts": "^4.9.0",
     "echarts-for-react": "^2.0.16",
-    "echarts-liquidfill": "^2.0.6",
-    "lint-staged": "^10.4.2",
-    "prettier": "^2.1.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "rimraf": "^3.0.2",
-    "typescript": "~3.7.2"
+    "echarts-liquidfill": "^2.0.6"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -94,6 +82,22 @@
     "@storybook/react": "^6.0.26",
     "babel-loader": "^8.1.0",
     "node-sass": "^4.14.1",
-    "react-is": "^16.13.1"
+    "react-is": "^16.13.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/echarts": "^4.8.3",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "cross-env": "^7.0.2",
+    "lint-staged": "^10.4.2",
+    "prettier": "^2.1.2",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-scripts": "3.4.3",
+    "rimraf": "^3.0.2",
+    "typescript": "~3.7.2"
   }
 }
