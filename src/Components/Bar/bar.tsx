@@ -130,24 +130,36 @@ export const Bar:FC<BarProps> = (props) => {
   } = props;
 
   const getOption = ():echarts.EChartOption<echarts.EChartOption.Series> => {
+  
     const transSeries = chartData?.map((item:BarDataInterface) => {
       const {
         colors,
         yData
       } = item;
+      let colorGrap = new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+        offset: 0,
+        color: colors[0]
+      }, {
+        offset: 1,
+        color: colors[1]
+      }], false);
+      if(mode === 'horizontal'){
+        colorGrap = new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
+          offset: 0,
+          color: colors[0]
+        }, {
+          offset: 1,
+          color: colors[1]
+        }], false);
+      }
+
       return {
         name: item?.name,
         type: 'bar',
         barWidth: `${barWidth}`,
         itemStyle:{
           normal:{
-            color:new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-              offset: 0,
-              color: colors[0]
-            }, {
-              offset: 1,
-              color: colors[1]
-            }], false),
+            color:colorGrap,
             barBorderRadius: [barBorderRadius, barBorderRadius, barBorderRadius, barBorderRadius],
           }
         },
@@ -368,8 +380,8 @@ Bar.defaultProps = {
   backgroundColor: '#011c3a',
   width: '100%',
   height: '100%',
-  unit: '单位',
-  toolTipUnit: '次',
+  unit: '',
+  toolTipUnit: '',
   barWidth: '30',
   axisLineColor: '#8e9eab',
   axisFontColor: '#8e9eab',
