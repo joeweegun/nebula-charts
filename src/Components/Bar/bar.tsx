@@ -140,16 +140,22 @@ export const Bar:FC<BarProps> = (props) => {
         offset: 0,
         color: colors[0]
       }, {
-        offset: 1,
+        offset: 0.5,
         color: colors[1]
+      },{
+        offset: 1,
+        color: colors[2]
       }], false);
       if(mode === 'horizontal'){
         colorGrap = new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
           offset: 0,
           color: colors[0]
         }, {
-          offset: 1,
+          offset: 0.5,
           color: colors[1]
+        },{
+          offset: 1,
+          color: colors[2]
         }], false);
       }
 
@@ -324,7 +330,12 @@ export const Bar:FC<BarProps> = (props) => {
         formatter: (params:any) => {
           let relVal = `${params[0].name}<br />`;
           for (let i = 0, l = params.length; i < l; i += 1) {
-            const marker = `<span class="tooltip-marker" style="background-image: linear-gradient(${Colors[i][0]}, ${Colors[i][1]});"></span>`
+            const marker = `
+              <span 
+                class="tooltip-marker" 
+                style="background-image: linear-gradient(${Colors[i][0]}, ${Colors[i][1]});width:10px;height:10px;display:inline-block;border-radius:5px;">
+              </span>
+            `
             relVal += `      ${marker} ${params[i].value}${toolTipUnit}      <br/>`;
           }
           return relVal;
