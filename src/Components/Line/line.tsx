@@ -235,7 +235,7 @@ export const Line:FC<BarProps> = (props) => {
         left: gridLeft,
         right: gridRight,
         bottom: gridBottom,
-        top:gridTop,
+        top:showLegend ? gridTop : '30px',
         containLabel: true,
       },
       legend: {
@@ -326,6 +326,9 @@ export const Line:FC<BarProps> = (props) => {
           color: axisFontColor,
           fontSize: yaxisFontSize
         },
+        axisTick: {
+          show: false,
+        },
         axisLine: {
           lineStyle: {
             type: 'solid',
@@ -339,12 +342,17 @@ export const Line:FC<BarProps> = (props) => {
             fontSize: yaxisFontSize,
           },
         },
+        // splitLine: {
+        //   show:false,
+        //   lineStyle: {
+        //     color: '#2d3d53'
+        //   }
+        // },
         splitLine: {
-          show:false,
           lineStyle: {
-            color: '#2d3d53'
+            color: axisLineColor,
           }
-        },
+        }
         // interval:500,
       }],
       ...transDataZoom,
@@ -367,7 +375,7 @@ Line.defaultProps = {
   unit: '',
   toolTipUnit: '',
   barWidth: '30',
-  axisLineColor: '#8e9eab',
+  axisLineColor: 'rgba(255,255,255,0.1)',
   axisFontColor: '#8e9eab',
   axisFontSize: '12',
   yaxisFontSize: '12',
